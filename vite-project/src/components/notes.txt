@@ -1,0 +1,18 @@
+diff btw Default export and named export  
+
+use default exports when you have only one component 
+use named exports when there are multiple components 
+
+default - can use any name at the time of import eg - 
+
+function List(){}
+export default List; 
+
+at the time of import -  import Banana from "./list.tsx" - this will still give the functionality of List function 
+
+named export  - need to write name in {} 
+
+eg - function List2(){}
+export function List2; 
+
+at import - import {List2} from "./list2"
