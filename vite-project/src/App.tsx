@@ -1,16 +1,11 @@
-import React from "react";
-import TableData from "./components/table";
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Country Information</h1>
-        <TableData />
-      </div>
-    );
-  }
+
+function App(){
+  return(
+    <div>
+     
+    </div>
+  )
 }
 
-export default App;
-
+export default App
