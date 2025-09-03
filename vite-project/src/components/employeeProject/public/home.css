@@ -1,0 +1,20 @@
+.homePage {
+  background-image: url('./photo-1521737604893-d14cc237f11d.avif');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.homePage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('./photo-1521737604893-d14cc237f11d.avif');
+  filter: blur(6px);   /* 👈 blur background */
+  z-index: -1;
+}

@@ -71,11 +71,11 @@ function TaskComponent(){
             <input type="text" value={text} onChange={handleText} placeholder="which task is on your mind today" />
         </form>
         <button onClick={handleAddClick}>add</button>
-        <ul className="list-group">
+        <ul classNameName="list-group">
             {taskList.map((task)=>(
-                <li key={task.id} className="list-group-item">
-                    <input className="form-check-input me-1" type="checkbox" value={task.task}  />
-                    <label className="form-check-label" >{task.task}</label>
+                <li key={task.id} classNameName="list-group-item">
+                    <input classNameName="form-check-input me-1" type="checkbox" value={task.task}  />
+                    <label classNameName="form-check-label" >{task.task}</label>
                     <button onClick={handleEdit}>edit</button>
                     <button onClick={handleDelete}>delete</button>
                 </li>

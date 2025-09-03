@@ -2,16 +2,16 @@
 // passing JSX as children 
 
 interface Para{
-    className: string
+    classNameName: string
 }
 
 
 
-function ButtonHandler({className}:Para){
+function ButtonHandler({classNameName}:Para){
     const handleClick = () =>{
-        if (className ==='btn btn-secondary'){
+        if (classNameName ==='btn btn-secondary'){
             alert('you clicked a blue button ')
-        }else if (className === "btn btn-danger") {
+        }else if (classNameName === "btn btn-danger") {
             alert("You clicked a red button");
         } else {
             alert("You clicked some other button");

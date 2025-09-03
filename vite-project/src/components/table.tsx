@@ -32,7 +32,7 @@ function normalizeCountry(c: any): Country {
     };
 }
 
-class TableData extends React.Component<{}, State> {
+className TableData extends React.Component<{}, State> {
     state: State;
 
     constructor(props:{}) {
@@ -82,19 +82,19 @@ class TableData extends React.Component<{}, State> {
         return (
             <>
                 {error && (
-                    <div className="alert alert-danger" role="alert">
+                    <div classNameName="alert alert-danger" role="alert">
                         Error: {error}
                     </div>
                 )}
 
                 {loading && (
-                    <div className="alert alert-info" role="alert">
+                    <div classNameName="alert alert-info" role="alert">
                         Loading data please wait!
                     </div>
                 )}
 
                 {!loading && !error && (
-                    <table className="table table-dark table-striped">
+                    <table classNameName="table table-dark table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">name</th>
@@ -120,7 +120,7 @@ class TableData extends React.Component<{}, State> {
                     </table>
                 )}
 
-                <div className="pagination">
+                <div classNameName="pagination">
                     <button
                         disabled={currentPage === 1}
                         onClick={() =>

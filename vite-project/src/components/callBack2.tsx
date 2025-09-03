@@ -79,7 +79,7 @@ export default function TodoList() {
         <button type="submit">Add</button>
       </form>
 
-      <ul className="list-group">
+      <ul classNameName="list-group">
         {todoList.map((task) => (
           <li key={task.id}>
             <input

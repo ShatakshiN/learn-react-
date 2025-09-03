@@ -14,9 +14,9 @@ function RowContent({row}:Tableprops){
         <>
             {row.map((items)=>(
                 <tr key={items.srNo}>
-                    <td className="border border-gray-400 px-4 py-2">{items.srNo}</td>
-                    <td className="border border-gray-400 px-4 py-2">{items.item}</td>
-                    <td className="border border-gray-400 px-4 py-2">{items.price}</td>
+                    <td classNameName="border border-gray-400 px-4 py-2">{items.srNo}</td>
+                    <td classNameName="border border-gray-400 px-4 py-2">{items.item}</td>
+                    <td classNameName="border border-gray-400 px-4 py-2">{items.price}</td>
                 </tr>
             ))}
         </>
