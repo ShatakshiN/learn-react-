@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Fullscreen background */
+.signup-wrapper {
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1674027392887-751d6396b710?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;  /* vertical center */
+  padding-left: 5%;     /* push form to the left */
+}
+
+/* Form styling */
+.signup-form {
+  max-width: 400px;
+  width: 100%;
+  background: transparent; /* translucent white for readability */
+  backdrop-filter: blur(20px);           /* frosted glass effect */
+  -webkit-backdrop-filter: blur(10px);   /* Safari support */
+  border-radius: 15px;
+  box-shadow: 0 20px 50px rgb(8, 0, 11); /* soft shadow */
+  padding: 2rem;
+  color: #fff; /* text stands out on hazy background */
+}
+
+/* Profile picture upload */
+.profile-upload {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #007bff;
+}
+
+/* Divider */
+.divider {
+  color: #e8ebec;
+  font-weight: 500;
+}
