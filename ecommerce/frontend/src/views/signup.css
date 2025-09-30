@@ -11,21 +11,21 @@
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: center;  /* vertical center */
-  padding-left: 5%;     /* push form to the left */
+  align-items: center;  
+  padding-left: 5%;     
 }
 
 /* Form styling */
 .signup-form {
   max-width: 400px;
   width: 100%;
-  background: transparent; /* translucent white for readability */
-  backdrop-filter: blur(20px);           /* frosted glass effect */
-  -webkit-backdrop-filter: blur(10px);   /* Safari support */
+  background: transparent; 
+  backdrop-filter: blur(20px);           
+ 
   border-radius: 15px;
-  box-shadow: 0 20px 50px rgb(8, 0, 11); /* soft shadow */
+  box-shadow: 0 20px 50px rgb(8, 0, 11); 
   padding: 2rem;
-  color: #fff; /* text stands out on hazy background */
+  color: #fff; 
 }
 
 /* Profile picture upload */

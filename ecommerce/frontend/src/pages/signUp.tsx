@@ -1,22 +1,63 @@
-import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
+import { useReducer } from "react";
 
 import "../views/signup.css";
 
+type State = {
+  profilePic: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  password: string;
+};
+
+type Action =
+  | { type: "SET_FIELD"; field: keyof State; value: string }
+  | { type: "SET_PROFILE_PIC"; value: string };
+
+const initialState: State = {
+  profilePic:
+    "https://dummyimage.com/120x120/cccccc/000000.png&text=Profile",
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  password: "",
+};
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "SET_FIELD":
+      return { ...state, [action.field]: action.value };
+    case "SET_PROFILE_PIC":
+      return { ...state, profilePic: action.value };
+    default:
+      return state;
+  }
+}
+
 function Signup() {
-  const [profilePic, setProfilePic] = useState<string>( "https://dummyimage.com/120x120/cccccc/000000.png&text=Profile");
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       const reader = new FileReader();
-      reader.onload = () => setProfilePic(reader.result as string);
+      reader.onload = () =>
+        dispatch({ type: "SET_PROFILE_PIC", value: reader.result as string });
       reader.readAsDataURL(file);
     }
   };
 
+  const handleChange =
+    (field: keyof State) => (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch({ type: "SET_FIELD", field, value: e.target.value });
+    };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Form data:", state);
     alert("Form submitted!");
   };
 
@@ -28,7 +69,7 @@ function Signup() {
         {/* Profile Upload */}
         <div className="d-flex justify-content-center mb-3">
           <label htmlFor="profilePicUpload" className="profile-upload">
-            <img src={profilePic} alt="Profile" className="profile-pic" />
+            <img src={state.profilePic} alt="Profile" className="profile-pic" />
             <input
               type="file"
               id="profilePicUpload"
@@ -39,26 +80,62 @@ function Signup() {
           </label>
         </div>
 
-        
         <form onSubmit={handleSubmit}>
           <div className="row mb-3">
             <div className="col">
-              <input type="text" className="form-control" placeholder="First Name" required />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="First Name"
+                required
+                value={state.firstName}
+                onChange={handleChange("firstName")}
+              />
             </div>
             <div className="col">
-              <input type="text" className="form-control" placeholder="Last Name" required />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Last Name"
+                required
+                value={state.lastName}
+                onChange={handleChange("lastName")}
+              />
             </div>
           </div>
           <div className="mb-3">
-            <input type="email" className="form-control" placeholder="Email" required />
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email"
+              required
+              value={state.email}
+              onChange={handleChange("email")}
+            />
           </div>
           <div className="mb-3">
-            <input type="tel" className="form-control" placeholder="Phone Number" required />
+            <input
+              type="tel"
+              className="form-control"
+              placeholder="Phone Number"
+              required
+              value={state.phone}
+              onChange={handleChange("phone")}
+            />
           </div>
           <div className="mb-3">
-            <input type="password" className="form-control" placeholder="Password" required />
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              required
+              value={state.password}
+              onChange={handleChange("password")}
+            />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Sign Up</button>
+          <button type="submit" className="btn btn-primary w-100">
+            Sign Up
+          </button>
         </form>
 
         {/* Divider */}
@@ -68,7 +145,9 @@ function Signup() {
 
         {/* Sign In */}
         <div className="text-center">
-          <button className="btn btn-primary w-100">Already a user? Sign In</button>
+          <button className="btn btn-primary w-100">
+            Already a user? Sign In
+          </button>
         </div>
       </div>
     </div>
