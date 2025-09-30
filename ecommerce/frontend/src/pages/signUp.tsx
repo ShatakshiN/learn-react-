@@ -39,7 +39,7 @@ function Signup() {
           </label>
         </div>
 
-        {/* Form */}
+        
         <form onSubmit={handleSubmit}>
           <div className="row mb-3">
             <div className="col">
