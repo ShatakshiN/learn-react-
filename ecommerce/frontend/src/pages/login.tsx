@@ -4,7 +4,7 @@ import { useReducer } from "react";
 import "../views/login.css";
 
 type State = {
-  emailOrPhone: string;
+  email: string;
   password: string;
 };
 
@@ -12,7 +12,7 @@ type Action =
   | { type: "SET_FIELD"; field: keyof State; value: string };
 
 const initialState: State = {
-  emailOrPhone: "",
+  email: "",
   password: "",
 };
 
@@ -47,12 +47,12 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
-              type="text"
+              type="email"
               className="form-control"
-              placeholder="Email or Phone"
+              placeholder="Email"
               required
-              value={state.emailOrPhone}
-              onChange={handleChange("emailOrPhone")}
+              value={state.email}
+              onChange={handleChange("email")}
             />
           </div>
           <div className="mb-3">
