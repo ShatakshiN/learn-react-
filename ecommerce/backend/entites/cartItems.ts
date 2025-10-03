@@ -9,14 +9,14 @@ export class CartItem {
 
   @ManyToOne(() => Cart, (cart) => cart.items, {
     nullable: false,
-    onDelete: "CASCADE", // if cart is deleted → items deleted
+    onDelete: "CASCADE", 
   })
   @JoinColumn({ name: "cart_id" })
   cart!: Cart;
 
   @ManyToOne(() => ProductVariant, (variant) => variant.cartItems, {
     nullable: false,
-    onDelete: "CASCADE", // if variant deleted → items deleted
+    onDelete: "CASCADE", 
   })
   @JoinColumn({ name: "product_variant_id" })
   productVariant!: ProductVariant;
