@@ -5,6 +5,6 @@ export declare class Product {
     description: string;
     brand: string;
     base_SKU: string;
-    category: Category[];
+    category: Category;
 }
 //# sourceMappingURL=products.d.ts.map
