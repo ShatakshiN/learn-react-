@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 
 import { Category } from "./categories.js";
+import { ProductVariant } from "./productVariants.js";
 
 @Entity({ name: "products" })
 export class Product {
@@ -18,7 +19,6 @@ export class Product {
 
   @Column({ type: "varchar", length: 100, nullable: false, unique: true })
   base_SKU!: string;
-
   
   @ManyToOne(() => Category, (category) => category.products, {
     nullable: false,
@@ -26,4 +26,7 @@ export class Product {
   })
   @JoinColumn({ name: "category_id" })
   category!: Category;
+  
+  @OneToMany(() => ProductVariant, (variant) => variant.product)
+  variants!: ProductVariant[];
 }

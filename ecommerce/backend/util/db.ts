@@ -6,6 +6,7 @@ import { Role } from "../entites/roles.js";
 import { Permissions } from "../entites/permissions.js";
 import { Category } from "../entites/categories.js";
 import { Product } from "../entites/products.js";
+import { ProductVariant } from "../entites/productVariants.js";
 
 
 config(); // load .env
@@ -19,7 +20,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DBASE_NAME!,
     synchronize: true,
     logging: false,
-    entities: [User, Role, Permissions, Category, Product],  
+    entities: [User, Role, Permissions, Category, Product, ProductVariant],  
     migrations: [],
     subscribers: [],
 });

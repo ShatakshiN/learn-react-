@@ -4,8 +4,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { Category } from "./categories.js";
+import { ProductVariant } from "./productVariants.js";
 let Product = class Product {
     id;
     product_name;
@@ -13,6 +14,7 @@ let Product = class Product {
     brand;
     base_SKU;
     category;
+    variants;
 };
 __decorate([
     PrimaryGeneratedColumn()
@@ -36,6 +38,9 @@ __decorate([
     }),
     JoinColumn({ name: "category_id" })
 ], Product.prototype, "category", void 0);
+__decorate([
+    OneToMany(() => ProductVariant, (variant) => variant.product)
+], Product.prototype, "variants", void 0);
 Product = __decorate([
     Entity({ name: "products" })
 ], Product);
