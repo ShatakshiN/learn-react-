@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
-import { UserRole } from "./userRoles.js";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
+import { Role } from "./roles.js"; // Node16 ESM requires .js
 let User = class User {
     id;
     first_name;
@@ -20,54 +20,56 @@ let User = class User {
     hashed_password;
     createdAt;
     updatedAt;
-    userRoles;
+    roles;
 };
 __decorate([
     PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);
 __decorate([
-    Column({ type: "varchar", length: 100, nullable: false }),
+    Column({ type: "varchar", length: 100 }),
     __metadata("design:type", String)
 ], User.prototype, "first_name", void 0);
 __decorate([
-    Column({ type: "varchar", length: 100, nullable: false }),
+    Column({ type: "varchar", length: 100 }),
     __metadata("design:type", String)
 ], User.prototype, "last_name", void 0);
 __decorate([
-    Column({ type: "varchar", length: 200, nullable: false }),
+    Column({ type: "varchar", length: 200 }),
     __metadata("design:type", String)
 ], User.prototype, "dp_url", void 0);
 __decorate([
-    Column({ type: "varchar", length: 100, nullable: false, unique: true }),
+    Column({ type: "varchar", length: 100, unique: true }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    Column({ type: "varchar", length: 15, nullable: false }),
+    Column({ type: "varchar", length: 15 }),
     __metadata("design:type", String)
 ], User.prototype, "phone_no", void 0);
 __decorate([
-    Column({ type: "boolean", default: true, nullable: false }),
+    Column({ type: "boolean", default: true }),
     __metadata("design:type", Boolean)
 ], User.prototype, "is_active", void 0);
 __decorate([
-    Column({ type: "varchar", length: 150, nullable: false }),
+    Column({ type: "varchar", length: 150 }),
     __metadata("design:type", String)
 ], User.prototype, "hashed_password", void 0);
 __decorate([
-    CreateDateColumn({ type: "timestamp" }),
+    CreateDateColumn(),
     __metadata("design:type", Date)
 ], User.prototype, "createdAt", void 0);
 __decorate([
-    UpdateDateColumn({ type: "timestamp" }),
+    UpdateDateColumn(),
     __metadata("design:type", Date)
 ], User.prototype, "updatedAt", void 0);
 __decorate([
-    OneToMany(() => UserRole, (userRole) => userRole.user),
+    ManyToMany(() => Role, (role) => role.users),
+    JoinTable() // <-- This tells TypeORM to create the join table automatically
+    ,
     __metadata("design:type", Array)
-], User.prototype, "userRoles", void 0);
+], User.prototype, "roles", void 0);
 User = __decorate([
     Entity({ name: "users" })
 ], User);
 export { User };
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=users.js.map

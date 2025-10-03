@@ -1,4 +1,4 @@
-import { UserRole } from "./userRoles.js";
+import { Role } from "./roles.js";
 export declare class User {
     id: number;
     first_name: string;
@@ -10,6 +10,6 @@ export declare class User {
     hashed_password: string;
     createdAt: Date;
     updatedAt: Date;
-    userRoles: UserRole[];
+    roles: Role[];
 }
-//# sourceMappingURL=user.d.ts.map
+//# sourceMappingURL=users.d.ts.map

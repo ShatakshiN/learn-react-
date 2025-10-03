@@ -1,7 +1,9 @@
 import { config } from "dotenv";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "../entites/user.js";
+import { User } from "../entites/users.js";
+import { Role } from "../entites/roles.js";
+import { UserRole } from "../entites/userRoles.js";
 config(); // load .env
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -12,7 +14,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DBASE_NAME,
     synchronize: true,
     logging: false,
-    entities: [User],
+    entities: [User, Role, UserRole],
     migrations: [],
     subscribers: [],
 });

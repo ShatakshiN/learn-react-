@@ -1,16 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany } from "typeorm";
+import { User } from "./users.js";
 
-@Entity({name: "roles"})
-export class Role{
+@Entity({ name: "roles" })
+export class Role {
     @PrimaryGeneratedColumn()
-    id!:number;
+    id!: number;
 
-    @Column({type:'varchar', length:10, nullable:false})
-    role_name!:string;
+    @Column({ type: "varchar", length: 10 })
+    role_name!: string;
 
-    @CreateDateColumn({type:"timestamp"})
+    @CreateDateColumn()
     createdAt!: Date;
 
-    @UpdateDateColumn({type:"timestamp"})
-    updatedAt!:Date;
+    @UpdateDateColumn()
+    updatedAt!: Date;
+
+    @ManyToMany(() => User, (user) => user.roles)
+    users!: User[];
 }
