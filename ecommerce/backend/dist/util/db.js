@@ -12,7 +12,12 @@ import { VariantAttributeValue } from "../entites/variantAttributeValues.js";
 import { Attribute } from "../entites/attributes.js";
 import { Cart } from "../entites/cart.js";
 import { CartItem } from "../entites/cartItems.js";
-config(); // load .env
+import { Order } from "../entites/orders.js";
+import { Payment } from "../entites/payments.js";
+import { OrderItem } from "../entites/orderItems.js";
+import { Delivery } from "../entites/delivaries.js";
+import { Address } from "../entites/address.js";
+config();
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: process.env.DBASE_HOST,
@@ -27,11 +32,17 @@ export const AppDataSource = new DataSource({
         Permissions,
         Category,
         Product,
-        ProductVariant, Attribute,
+        ProductVariant,
+        Attribute,
         VariantAttributeValue,
         ProductImage,
         Cart,
-        CartItem
+        CartItem,
+        Order,
+        Payment,
+        OrderItem,
+        Delivery,
+        Address
     ],
     migrations: [],
     subscribers: [],

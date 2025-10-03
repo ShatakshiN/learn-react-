@@ -4,37 +4,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { Cart } from "./cart.js";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, } from "typeorm";
+import { Order } from "./orders.js";
 import { ProductVariant } from "./productVariants.js";
-let CartItem = class CartItem {
+let OrderItem = class OrderItem {
     id;
-    cart;
+    order;
     productVariant;
     quantity;
+    price;
 };
 __decorate([
     PrimaryGeneratedColumn()
-], CartItem.prototype, "id", void 0);
+], OrderItem.prototype, "id", void 0);
 __decorate([
-    ManyToOne(() => Cart, (cart) => cart.items, {
+    ManyToOne(() => Order, (order) => order.orderItems, {
         nullable: false,
         onDelete: "CASCADE",
     }),
-    JoinColumn({ name: "cart_id" })
-], CartItem.prototype, "cart", void 0);
+    JoinColumn({ name: "order_id" })
+], OrderItem.prototype, "order", void 0);
 __decorate([
-    ManyToOne(() => ProductVariant, (variant) => variant.cartItems, {
+    ManyToOne(() => ProductVariant, (variant) => variant.orderItems, {
         nullable: false,
         onDelete: "CASCADE",
     }),
     JoinColumn({ name: "product_variant_id" })
-], CartItem.prototype, "productVariant", void 0);
+], OrderItem.prototype, "productVariant", void 0);
 __decorate([
     Column({ type: "int", nullable: false })
-], CartItem.prototype, "quantity", void 0);
-CartItem = __decorate([
-    Entity({ name: "cart_items" })
-], CartItem);
-export { CartItem };
-//# sourceMappingURL=cartItems.js.map
+], OrderItem.prototype, "quantity", void 0);
+__decorate([
+    Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
+], OrderItem.prototype, "price", void 0);
+OrderItem = __decorate([
+    Entity({ name: "order_items" })
+], OrderItem);
+export { OrderItem };
+//# sourceMappingURL=orderItems.js.map

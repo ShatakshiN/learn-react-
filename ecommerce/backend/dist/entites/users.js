@@ -4,9 +4,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, OneToOne, OneToMany } from "typeorm";
 import { Role } from "./roles.js";
 import { Cart } from "./cart.js";
+import { Order } from "./orders.js";
+import { Address } from "./address.js";
 let User = class User {
     id;
     first_name;
@@ -20,6 +22,8 @@ let User = class User {
     updatedAt;
     roles;
     cart;
+    orders;
+    addresses;
 };
 __decorate([
     PrimaryGeneratedColumn()
@@ -57,6 +61,12 @@ __decorate([
 __decorate([
     OneToOne(() => Cart, (cart) => cart.user)
 ], User.prototype, "cart", void 0);
+__decorate([
+    OneToMany(() => Order, (order) => order.user)
+], User.prototype, "orders", void 0);
+__decorate([
+    OneToMany(() => Address, (address) => address.user)
+], User.prototype, "addresses", void 0);
 User = __decorate([
     Entity({ name: "users" })
 ], User);

@@ -1,5 +1,7 @@
 import { Role } from "./roles.js";
 import { Cart } from "./cart.js";
+import { Order } from "./orders.js";
+import { Address } from "./address.js";
 export declare class User {
     id: number;
     first_name: string;
@@ -13,5 +15,7 @@ export declare class User {
     updatedAt: Date;
     roles: Role[];
     cart: Cart;
+    orders: Order[];
+    addresses: Address[];
 }
 //# sourceMappingURL=users.d.ts.map

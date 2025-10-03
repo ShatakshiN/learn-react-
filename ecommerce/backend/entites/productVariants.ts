@@ -3,6 +3,7 @@ import { Product } from "./products.js";
 import { VariantAttributeValue } from "./variantAttributeValues.js";
 import { ProductImage } from "./productImage.js";
 import { CartItem } from "./cartItems.js";
+import { OrderItem } from "./orderItems.js";
 
 @Entity({ name: "product_variants" })
 @Unique(["SKU"])
@@ -36,4 +37,6 @@ export class ProductVariant {
   @OneToMany(() => CartItem, (item) => item.productVariant)
   cartItems!: CartItem[];
   
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.productVariant)
+  orderItems!: OrderItem[];
 }

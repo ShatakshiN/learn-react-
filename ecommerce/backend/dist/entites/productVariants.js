@@ -9,6 +9,7 @@ import { Product } from "./products.js";
 import { VariantAttributeValue } from "./variantAttributeValues.js";
 import { ProductImage } from "./productImage.js";
 import { CartItem } from "./cartItems.js";
+import { OrderItem } from "./orderItems.js";
 let ProductVariant = class ProductVariant {
     id;
     SKU;
@@ -18,6 +19,7 @@ let ProductVariant = class ProductVariant {
     attributeValues;
     images;
     cartItems;
+    orderItems;
 };
 __decorate([
     PrimaryGeneratedColumn()
@@ -47,6 +49,9 @@ __decorate([
 __decorate([
     OneToMany(() => CartItem, (item) => item.productVariant)
 ], ProductVariant.prototype, "cartItems", void 0);
+__decorate([
+    OneToMany(() => OrderItem, (orderItem) => orderItem.productVariant)
+], ProductVariant.prototype, "orderItems", void 0);
 ProductVariant = __decorate([
     Entity({ name: "product_variants" }),
     Unique(["SKU"])
