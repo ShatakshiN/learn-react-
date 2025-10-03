@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Unique, 
 import { Product } from "./products.js";
 import { VariantAttributeValue } from "./variantAttributeValues.js";
 import { ProductImage } from "./productImage.js";
+import { CartItem } from "./cartItems.js";
 
 @Entity({ name: "product_variants" })
 @Unique(["SKU"])
@@ -30,5 +31,9 @@ export class ProductVariant {
 
   @OneToMany(() => ProductImage, (image) => image.productVariant)
   images!: ProductImage[];
+
+  
+  @OneToMany(() => CartItem, (item) => item.productVariant)
+  cartItems!: CartItem[];
   
 }

@@ -4,11 +4,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import { User } from "./users.js";
+import { CartItem } from "./cartItems.js";
 let Cart = class Cart {
     id;
     user;
+    items;
 };
 __decorate([
     PrimaryGeneratedColumn()
@@ -20,6 +22,9 @@ __decorate([
     }),
     JoinColumn({ name: "user_id" })
 ], Cart.prototype, "user", void 0);
+__decorate([
+    OneToMany(() => CartItem, (item) => item.cart)
+], Cart.prototype, "items", void 0);
 Cart = __decorate([
     Entity({ name: "cart" })
 ], Cart);
