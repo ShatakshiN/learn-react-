@@ -8,13 +8,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn, } from "typeorm";
+import { Product } from "./products.js";
 let Category = class Category {
     id;
     category;
-    // Parent category (self reference)
     parent;
-    // Subcategories
     children;
+    products;
 };
 __decorate([
     PrimaryGeneratedColumn(),
@@ -26,14 +26,17 @@ __decorate([
 ], Category.prototype, "category", void 0);
 __decorate([
     ManyToOne(() => Category, (category) => category.children, { nullable: true }),
-    JoinColumn({ name: "parent_category_id" }) // foreign key column - joinColumn() - generates foreign key
-    ,
+    JoinColumn({ name: "parent_category_id" }),
     __metadata("design:type", Object)
 ], Category.prototype, "parent", void 0);
 __decorate([
     OneToMany(() => Category, (category) => category.parent),
     __metadata("design:type", Array)
 ], Category.prototype, "children", void 0);
+__decorate([
+    OneToMany(() => Product, (product) => product.category),
+    __metadata("design:type", Array)
+], Category.prototype, "products", void 0);
 Category = __decorate([
     Entity({ name: "categories" })
 ], Category);

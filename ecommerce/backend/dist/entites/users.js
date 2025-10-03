@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
-import { Role } from "./roles.js"; // Node16 ESM requires .js
+import { Role } from "./roles.js";
 let User = class User {
     id;
     first_name;
@@ -64,8 +64,6 @@ __decorate([
 ], User.prototype, "updatedAt", void 0);
 __decorate([
     ManyToMany(() => Role, (role) => role.users),
-    JoinTable() // <-- This tells TypeORM to create the join table automatically
-    ,
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);
 User = __decorate([

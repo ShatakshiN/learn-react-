@@ -7,14 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
 import { User } from "./users.js";
+import { Permissions } from "./permissions.js";
 let Role = class Role {
     id;
     role_name;
     createdAt;
     updatedAt;
     users;
+    permissions;
 };
 __decorate([
     PrimaryGeneratedColumn(),
@@ -34,8 +36,14 @@ __decorate([
 ], Role.prototype, "updatedAt", void 0);
 __decorate([
     ManyToMany(() => User, (user) => user.roles),
+    JoinTable({ name: "user_role" }),
     __metadata("design:type", Array)
 ], Role.prototype, "users", void 0);
+__decorate([
+    ManyToMany(() => Permissions, (permission) => permission.roles),
+    JoinTable({ name: 'role_permissions' }),
+    __metadata("design:type", Array)
+], Role.prototype, "permissions", void 0);
 Role = __decorate([
     Entity({ name: "roles" })
 ], Role);

@@ -7,13 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
+import { Role } from "./roles.js";
 let Permissions = class Permissions {
     id;
     permission_name;
     description;
     createdAt;
     updatedAt;
+    roles;
 };
 __decorate([
     PrimaryGeneratedColumn(),
@@ -35,6 +37,10 @@ __decorate([
     UpdateDateColumn({ type: "timestamp" }),
     __metadata("design:type", Date)
 ], Permissions.prototype, "updatedAt", void 0);
+__decorate([
+    ManyToMany(() => Role, (role) => role.permissions),
+    __metadata("design:type", Array)
+], Permissions.prototype, "roles", void 0);
 Permissions = __decorate([
     Entity({ name: "permissions" })
 ], Permissions);

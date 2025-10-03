@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
-import { Role } from "./roles.js"; // Node16 ESM requires .js
+import { Role } from "./roles.js"; 
 
 @Entity({ name: "users" })
 export class User {
@@ -34,7 +34,6 @@ export class User {
     updatedAt!: Date;
 
     @ManyToMany(() => Role, (role) => role.users)
-    @JoinTable() 
     roles!: Role[];
 }
 

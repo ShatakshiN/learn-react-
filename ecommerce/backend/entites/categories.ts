@@ -7,6 +7,8 @@ import {
   JoinColumn,
 } from "typeorm";
 
+import { Product } from "./products.js";
+
 @Entity({ name: "categories" })
 export class Category {
   @PrimaryGeneratedColumn()
@@ -15,12 +17,15 @@ export class Category {
   @Column({ type: "varchar", length: 255, nullable: false })
   category!: string;
 
-  // Parent category (self reference)
+ 
   @ManyToOne(() => Category, (category) => category.children, { nullable: true })
-  @JoinColumn({ name: "parent_category_id" }) // foreign key column - joinColumn() - generates foreign key
+  @JoinColumn({ name: "parent_category_id" })
   parent!: Category | null;
 
-  // Subcategories
   @OneToMany(() => Category, (category) => category.parent)
   children!: Category[];
+
+  
+  @OneToMany(() => Product, (product) => product.category)
+  products!: Product[]; 
 }
