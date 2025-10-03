@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Unique, OneToMany } from "typeorm";
 import { Product } from "./products.js";
 import { VariantAttributeValue } from "./variantAttributeValues.js";
+import { ProductImage } from "./productImage.js";
 
 @Entity({ name: "product_variants" })
 @Unique(["SKU"])
@@ -26,5 +27,8 @@ export class ProductVariant {
 
   @OneToMany(() => VariantAttributeValue, (vav) => vav.productVariant)
   attributeValues!: VariantAttributeValue[];
+
+  @OneToMany(() => ProductImage, (image) => image.productVariant)
+  images!: ProductImage[];
   
 }

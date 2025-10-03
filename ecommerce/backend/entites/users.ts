@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, OneToOne } from "typeorm";
 import { Role } from "./roles.js"; 
+import { Cart } from "./cart.js";
 
 @Entity({ name: "users" })
 export class User {
@@ -35,5 +36,8 @@ export class User {
 
     @ManyToMany(() => Role, (role) => role.users)
     roles!: Role[];
+
+    @OneToOne(() => Cart, (cart) => cart.user)
+    cart!: Cart;
 }
 

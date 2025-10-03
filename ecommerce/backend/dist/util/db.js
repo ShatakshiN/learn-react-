@@ -7,6 +7,10 @@ import { Permissions } from "../entites/permissions.js";
 import { Category } from "../entites/categories.js";
 import { Product } from "../entites/products.js";
 import { ProductVariant } from "../entites/productVariants.js";
+import { ProductImage } from "../entites/productImage.js";
+import { VariantAttributeValue } from "../entites/variantAttributeValues.js";
+import { Attribute } from "../entites/attributes.js";
+import { Cart } from "../entites/cart.js";
 config(); // load .env
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -17,7 +21,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DBASE_NAME,
     synchronize: true,
     logging: false,
-    entities: [User, Role, Permissions, Category, Product, ProductVariant],
+    entities: [User, Role, Permissions, Category, Product, ProductVariant, Attribute, VariantAttributeValue, ProductImage, Cart],
     migrations: [],
     subscribers: [],
 });
