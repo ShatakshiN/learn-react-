@@ -9,6 +9,8 @@ import { Product } from "./products.js";
 let Category = class Category {
     id;
     category;
+    icon_image_url;
+    is_featured_on_homepage;
     parent;
     children;
     products;
@@ -19,6 +21,12 @@ __decorate([
 __decorate([
     Column({ type: "varchar", length: 255, nullable: false })
 ], Category.prototype, "category", void 0);
+__decorate([
+    Column({ type: "varchar", length: 255, nullable: false })
+], Category.prototype, "icon_image_url", void 0);
+__decorate([
+    Column({ type: "boolean", default: false, nullable: false })
+], Category.prototype, "is_featured_on_homepage", void 0);
 __decorate([
     ManyToOne(() => Category, (category) => category.children, { nullable: true }),
     JoinColumn({ name: "parent_category_id" })
