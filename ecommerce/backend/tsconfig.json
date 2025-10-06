@@ -4,6 +4,7 @@
     // File Layout
     "rootDir": "./",
     "outDir": "./dist",
+   
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -43,5 +44,10 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+    // Files to compile
+  "include": [
+    "**/*.ts",  // all TS files in backend recursively
+    "types.d.ts"        // your custom types file
+  ]
 }

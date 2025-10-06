@@ -10,7 +10,7 @@ import { Cart } from "./cart.js";
 import { Order } from "./orders.js";
 import { Address } from "./address.js";
 let User = class User {
-    id;
+    user_id;
     first_name;
     last_name;
     dp_url;
@@ -27,7 +27,7 @@ let User = class User {
 };
 __decorate([
     PrimaryGeneratedColumn()
-], User.prototype, "id", void 0);
+], User.prototype, "user_id", void 0);
 __decorate([
     Column({ type: "varchar", length: 100 })
 ], User.prototype, "first_name", void 0);

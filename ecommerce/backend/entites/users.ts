@@ -8,7 +8,7 @@ import { Address } from "./address.js";
 @Entity({ name: "users" })
 export class User {
     @PrimaryGeneratedColumn()
-    id!: number;
+    user_id!: number;
 
     @Column({ type: "varchar", length: 100 })
     first_name!: string;

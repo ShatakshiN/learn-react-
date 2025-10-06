@@ -3,7 +3,7 @@ import { Cart } from "./cart.js";
 import { Order } from "./orders.js";
 import { Address } from "./address.js";
 export declare class User {
-    id: number;
+    user_id: number;
     first_name: string;
     last_name: string;
     dp_url: string;
