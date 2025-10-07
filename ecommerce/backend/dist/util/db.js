@@ -44,7 +44,7 @@ export const AppDataSource = new DataSource({
         Delivery,
         Address
     ],
-    migrations: ["dist/migrations/*.js"],
+    migrations: [],
     subscribers: [],
 });
 //# sourceMappingURL=db.js.map
