@@ -8,20 +8,14 @@ export const seedProductVariants = async () => {
             SKU: "IPHONE15-128GB",
             price: 79999,
             stock: 50,
-            product: { id: 1 },
+            product: { id: 1 }, // iPhone 15
         },
         {
             SKU: "PIXEL8-128GB",
             price: 74999,
             stock: 40,
-            product: { id: 2 },
-        },
-        {
-            SKU: "CASE-IPHONE15-BLACK",
-            price: 1999,
-            stock: 100,
-            product: { id: 3 },
-        },
+            product: { id: 2 }, // Pixel 8
+        }
     ]);
     await repo.save(variants);
     console.log("Product Variants seeded");

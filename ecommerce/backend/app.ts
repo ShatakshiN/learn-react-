@@ -3,20 +3,34 @@ import express from "express";
 import { AppDataSource } from "./util/db.js";
 import cors from 'cors';
 import userRoutes from './routes/userRoute.js';
+import categoriesRoutes from "./routes/categoriesRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
+
 import { seedCategories } from "./seeder/seedCategories.js";
-import categoriesRoutes from "./routes/categoriesRoutes.js"
+import { seedAttributes } from "./seeder/seedAttributes.js";
+import { seedProductImages } from "./seeder/seedProductImages.js";
+import { seedProductVariants } from "./seeder/seedProductVariants.js";
+import { seedProducts } from "./seeder/seedProducts.js";
+import { seedVariantAttributeValues } from "./seeder/seedVariantAttributeValues.js";
 
 const app = express();
 app.use(express.json()); 
 app.use(cors());
 app.use('/user',userRoutes );
 app.use('/homepage', categoriesRoutes);
+app.use('/products', productRoutes);
 
 
 AppDataSource.initialize()
     .then(async () => {
         console.log("Data Source has been initialized!");
         await seedCategories();
+        await seedAttributes();
+        await seedProducts();
+        await seedProductVariants();
+        await seedVariantAttributeValues();
+        await seedProductImages();
+
         
         app.listen(4000, () => {
             console.log("Server running on http://localhost:4000");

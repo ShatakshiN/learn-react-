@@ -4,12 +4,12 @@ export const seedVariantAttributeValues = async () => {
     const repo = AppDataSource.getRepository(VariantAttributeValue);
     const data = repo.create([
         {
-            productVariant: { id: 1 },
+            productVariant: { id: 1 }, // iPhone 15 variant
             attribute: { id: 2 }, // Storage
             value: "128GB",
         },
         {
-            productVariant: { id: 3 },
+            productVariant: { id: 1 }, // iPhone 15 variant
             attribute: { id: 1 }, // Color
             value: "Black",
         },
