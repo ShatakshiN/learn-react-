@@ -20,10 +20,6 @@ export class Category {
   
   @Column({ type: "varchar", length: 255, nullable: false }) 
   icon_image_url!: string;
-
-
-  @Column({ type: "boolean", default: false, nullable: false })
-  is_featured_on_homepage!: boolean;
  
   @ManyToOne(() => Category, (category) => category.children, { nullable: true })
   @JoinColumn({ name: "parent_category_id" })
