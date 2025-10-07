@@ -1,22 +1,22 @@
 import { config } from "dotenv";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "../entites/users.js";
-import { Role } from "../entites/roles.js";
-import { Permissions } from "../entites/permissions.js";
-import { Category } from "../entites/categories.js";
-import { Product } from "../entites/products.js";
-import { ProductVariant } from "../entites/productVariants.js";
-import { ProductImage } from "../entites/productImage.js";
-import { VariantAttributeValue } from "../entites/variantAttributeValues.js";
-import { Attribute } from "../entites/attributes.js";
-import { Cart } from "../entites/cart.js";
-import { CartItem } from "../entites/cartItems.js";
-import { Order } from "../entites/orders.js";
-import { Payment } from "../entites/payments.js";
-import { OrderItem } from "../entites/orderItems.js";
-import { Delivery } from "../entites/delivaries.js";
-import { Address } from "../entites/address.js";
+import { User } from "../entities/users.js";
+import { Role } from "../entities/roles.js";
+import { Permissions } from "../entities/permissions.js";
+import { Category } from "../entities/categories.js";
+import { Product } from "../entities/products.js";
+import { ProductVariant } from "../entities/productVariants.js";
+import { ProductImage } from "../entities/productImage.js";
+import { VariantAttributeValue } from "../entities/variantAttributeValues.js";
+import { Attribute } from "../entities/attributes.js";
+import { Cart } from "../entities/cart.js";
+import { CartItem } from "../entities/cartItems.js";
+import { Order } from "../entities/orders.js";
+import { Payment } from "../entities/payments.js";
+import { OrderItem } from "../entities/orderItems.js";
+import { Delivery } from "../entities/delivaries.js";
+import { Address } from "../entities/address.js";
 
 config(); 
 

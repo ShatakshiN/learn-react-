@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { User } from '../entites/users.js';
+import { User } from '../entities/users.js';
 import { AppDataSource } from "../util/db.js";
 export async function authenticate(req, res, next) {
     try {

@@ -1,0 +1,1 @@
+{"version":3,"file":"variantAttributeValues.d.ts","sourceRoot":"","sources":["../../entities/variantAttributeValues.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,cAAc,EAAE,MAAM,sBAAsB,CAAC;AACtD,OAAO,EAAE,SAAS,EAAE,MAAM,iBAAiB,CAAC;AAE5C,qBAEa,qBAAqB;IAEhC,EAAE,EAAG,MAAM,CAAC;IAOZ,cAAc,EAAG,cAAc,CAAC;IAOhC,SAAS,EAAG,SAAS,CAAC;IAGtB,KAAK,EAAG,MAAM,CAAC;CAChB"}
