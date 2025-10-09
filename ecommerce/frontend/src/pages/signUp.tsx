@@ -1,5 +1,7 @@
 import type { ChangeEvent, FormEvent } from "react";
 import { useReducer } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 import "../views/signup.css";
 import api from "../api/axiosInstance";
@@ -42,6 +44,7 @@ function reducer(state: State, action: Action): State {
 }
 
 function Signup() {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -175,7 +178,10 @@ function Signup() {
 
         {/* Sign In */}
         <div className="text-center">
-          <button className="btn btn-primary w-100">
+          <button className="btn btn-primary w-100"
+            type="button" // important so it doesn't submit the form
+            onClick={() => navigate("/login")}
+          >
             Already a user? Sign In
           </button>
         </div>
