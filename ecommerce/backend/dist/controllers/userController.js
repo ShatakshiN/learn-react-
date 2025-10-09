@@ -6,7 +6,9 @@ import { config } from "dotenv";
 config();
 export const signUp = async (req, res, next) => {
     try {
-        const { firstName, lastName, email, phone, password, dpUrl } = req.body;
+        const { firstName, lastName, email, phone, password } = req.body;
+        const dpFile = req.file;
+        const dpUrl = dpFile ? `/uploads/${dpFile.filename}` : "/uploads/default.png";
         const userRepository = AppDataSource.getRepository(User);
         const existingUseer = await userRepository.findOne({
             where: { email }
@@ -67,7 +69,8 @@ export const login = async (req, res, next) => {
         res.status(200).json({ msg: 'user successfully logged in', token });
     }
     catch (error) {
-        res.status(500).json({ error: error });
+        console.log(error);
+        res.status(500).json({ error: error || "internal server error" });
     }
     ;
 };

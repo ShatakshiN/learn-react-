@@ -5,13 +5,13 @@ export const seedProductVariants = async () => {
     const repo = AppDataSource.getRepository(ProductVariant);
     const variants = repo.create([
         {
-            SKU: "IPHONE15-128GB",
+            SKU: "IP15-128-BLK",
             price: 79999,
             stock: 50,
             product: { id: 1 }, // iPhone 15
         },
         {
-            SKU: "PIXEL8-128GB",
+            SKU: "PIXEL8-128-WHT",
             price: 74999,
             stock: 40,
             product: { id: 2 }, // Pixel 8

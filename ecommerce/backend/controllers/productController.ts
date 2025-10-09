@@ -1,13 +1,14 @@
 import type { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../util/db.js";
-import { IsNull } from "typeorm";
+import { Product } from "../entities/products.js";
+
 
 export const AllProducts = async(req:Request, res:Response, next:NextFunction)=>{
     try{
         const idParam = req.params.id;
 
         if(!idParam){
-            return res.status(400).json({msg:"parent ID is required"})
+            return res.status(400).json({msg:"category ID is required"})
         };
         
         const parentId = parseInt(idParam);
@@ -16,15 +17,20 @@ export const AllProducts = async(req:Request, res:Response, next:NextFunction)=>
             return res.status(400).json({msg:"invalid ID"})
         }
 
-        const productRepository = AppDataSource.getRepository('Product');
+        const productRepository = AppDataSource.getRepository(Product);
 
-        const allProducts = productRepository.find({
-            where: { category: { id: parentId } },
-            relations: [
-                "product_variants",
-                "product_variants.productImages"
-            ],
-        })
+        const allProducts = await productRepository
+        .createQueryBuilder("p")
+        .leftJoinAndSelect("p.variants", "pv")
+        .leftJoinAndSelect("pv.images", "pi")
+        .innerJoin("p.category", "c")
+        .where("p.category_id = :categoryId", { categoryId:parentId })
+        .select([
+            "p.id",
+            "p.product_name",
+            "pi.image_url"
+        ])
+        .getMany();
 
         if(!allProducts){
             return res.status(404).json({msg:"no products found"})
@@ -33,6 +39,10 @@ export const AllProducts = async(req:Request, res:Response, next:NextFunction)=>
 
     }catch(error){
         console.log(error)
+        return res.status(500).json({msg:error||"internal server error"});
     }
 }
+
+
+
 

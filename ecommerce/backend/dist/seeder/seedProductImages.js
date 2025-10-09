@@ -10,11 +10,7 @@ export const seedProductImages = async () => {
         {
             productVariant: { id: 2 },
             image_url: "https://example.com/pixel8-128gb.png",
-        },
-        {
-            productVariant: { id: 3 },
-            image_url: "https://example.com/iphonecase-black.png",
-        },
+        }
     ]);
     await repo.save(images);
     console.log(" Product Images seeded");

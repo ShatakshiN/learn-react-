@@ -4,7 +4,7 @@ import { AppDataSource } from "../util/db.js";
 import { IsNull } from "typeorm";
 export const categories = async (req, res, next) => {
     try {
-        const categoryRepository = AppDataSource.getRepository("Category");
+        const categoryRepository = AppDataSource.getRepository(Category);
         const categories = await categoryRepository.find({
             where: { parent: IsNull() }
         });
@@ -15,6 +15,7 @@ export const categories = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
+        return res.status(500).json({ msg: error || "internal server error" });
     }
 };
 export const subCategories = async (req, res, next) => {
@@ -27,7 +28,7 @@ export const subCategories = async (req, res, next) => {
         if (isNaN(parentId)) {
             return res.status(400).json({ msg: "Invalid category ID" });
         }
-        const categoryRepository = AppDataSource.getRepository('Category');
+        const categoryRepository = AppDataSource.getRepository(Category);
         const subCategories = await categoryRepository.find({
             where: { parent: { id: parentId } },
             relations: ["parent"],
@@ -39,6 +40,7 @@ export const subCategories = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
+        return res.status(500).json({ msg: error || "internal server error" });
     }
 };
 //# sourceMappingURL=categoriesController.js.map

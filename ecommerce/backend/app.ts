@@ -2,9 +2,11 @@ import "reflect-metadata";
 import express from "express";
 import { AppDataSource } from "./util/db.js";
 import cors from 'cors';
+import path from "path";
 import userRoutes from './routes/userRoute.js';
 import categoriesRoutes from "./routes/categoriesRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import { fileURLToPath } from "url";
 
 import { seedCategories } from "./seeder/seedCategories.js";
 import { seedAttributes } from "./seeder/seedAttributes.js";
@@ -14,8 +16,16 @@ import { seedProducts } from "./seeder/seedProducts.js";
 import { seedVariantAttributeValues } from "./seeder/seedVariantAttributeValues.js";
 
 const app = express();
+
 app.use(express.json()); 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 app.use('/user',userRoutes );
 app.use('/homepage', categoriesRoutes);
 app.use('/products', productRoutes);
@@ -23,15 +33,7 @@ app.use('/products', productRoutes);
 
 AppDataSource.initialize()
     .then(async () => {
-        console.log("Data Source has been initialized!");
-        await seedCategories();
-        await seedAttributes();
-        await seedProducts();
-        await seedProductVariants();
-        await seedVariantAttributeValues();
-        await seedProductImages();
-
-        
+        console.log("Data Source has been initialized!");      
         app.listen(4000, () => {
             console.log("Server running on http://localhost:4000");
         });

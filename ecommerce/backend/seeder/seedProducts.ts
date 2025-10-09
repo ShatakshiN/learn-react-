@@ -19,16 +19,18 @@ export const seedProducts = async () => {
       product_name: "iPhone 15",
       description: "Latest Apple iPhone 15",
       brand: "Apple",
-      base_SKU: "IP15-BASE",
+      base_SKU: "IP15-128-BLK",
       category: phonesCategory,
     },
     {
       product_name: "Pixel 8",
       description: "Google Pixel 8 with Tensor G3",
       brand: "Google",
-      base_SKU: "PIXEL8-BASE",
+      base_SKU: "PIXEL8-128-BLK",
       category: phonesCategory,
     },
+    
+
   ];
 
   await productRepo.save(products);

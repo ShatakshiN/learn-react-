@@ -10,6 +10,8 @@ interface JwtPayload {
 export async function authenticate(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const token = req.header("Authorization");
+        console.log(token)
+        
         if (!token) throw new Error("Authorization token missing");
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;

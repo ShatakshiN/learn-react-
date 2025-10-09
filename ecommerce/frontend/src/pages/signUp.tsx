@@ -2,6 +2,7 @@ import type { ChangeEvent, FormEvent } from "react";
 import { useReducer } from "react";
 
 import "../views/signup.css";
+import api from "../api/axiosInstance";
 
 type State = {
   profilePic: string;
@@ -55,10 +56,30 @@ function Signup() {
       dispatch({ type: "SET_FIELD", field, value: e.target.value });
     };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form data:", state);
-    alert("Form submitted!");
+    const formData = new FormData();
+    formData.append("firstName", state.firstName);
+    formData.append("lastName", state.lastName);
+    formData.append("email", state.email);
+    formData.append("phone", state.phone);
+    formData.append("password", state.password);
+
+    const fileInput = document.getElementById("profilePicUpload") as HTMLInputElement;
+    if (fileInput.files && fileInput.files[0]) {
+      formData.append("dp", fileInput.files[0]);
+    }
+
+    try {
+      const { data } = await api.post("/user/signUp", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      alert(data.msg);
+      console.log("Profile URL saved in DB:", data.dpUrl);
+    } catch (error: any) {
+      alert(error.response?.data?.msg || "Sign up failed!");
+    }
   };
 
   return (

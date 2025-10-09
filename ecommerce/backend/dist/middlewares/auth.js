@@ -4,6 +4,7 @@ import { AppDataSource } from "../util/db.js";
 export async function authenticate(req, res, next) {
     try {
         const token = req.header("Authorization");
+        console.log(token);
         if (!token)
             throw new Error("Authorization token missing");
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
