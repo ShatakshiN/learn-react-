@@ -15,7 +15,8 @@ type State = {
 
 type Action =
   | { type: "SET_FIELD"; field: keyof State; value: string }
-  | { type: "SET_PROFILE_PIC"; value: string };
+  | { type: "SET_PROFILE_PIC"; value: string }
+  | {type: "RESET"};
 
 const initialState: State = {
   profilePic:
@@ -33,6 +34,8 @@ function reducer(state: State, action: Action): State {
       return { ...state, [action.field]: action.value };
     case "SET_PROFILE_PIC":
       return { ...state, profilePic: action.value };
+    case "RESET":
+      return initialState;
     default:
       return state;
   }
@@ -77,6 +80,12 @@ function Signup() {
 
       alert(data.msg);
       console.log("Profile URL saved in DB:", data.dpUrl);
+      
+      dispatch({ type: "RESET" });
+
+      const fileInput = document.getElementById("profilePicUpload") as HTMLInputElement;
+      if (fileInput) fileInput.value = "";
+
     } catch (error: any) {
       alert(error.response?.data?.msg || "Sign up failed!");
     }
