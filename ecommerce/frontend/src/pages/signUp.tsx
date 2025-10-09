@@ -86,7 +86,6 @@ function Signup() {
       
       dispatch({ type: "RESET" });
 
-      const fileInput = document.getElementById("profilePicUpload") as HTMLInputElement;
       if (fileInput) fileInput.value = "";
 
     } catch (error: any) {

@@ -1,7 +1,9 @@
 import type { ChangeEvent, FormEvent } from "react";
 import { useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../views/login.css";
+import api from "../api/axiosInstance";
 
 type State = {
   email: string;
@@ -26,6 +28,7 @@ function reducer(state: State, action: Action): State {
 }
 
 function Login() {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleChange =
@@ -33,10 +36,23 @@ function Login() {
       dispatch({ type: "SET_FIELD", field, value: e.target.value });
     };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Login data:", state);
-    alert("Logged in!");
+    try {
+      
+      const response = await api.post('/user/login', state);
+
+      const data = response.data; 
+
+      localStorage.setItem("token", data.token);
+
+      alert("Logged in successfully!");
+    } catch (error: any) {
+      console.log(error)
+      alert(error.response?.data?.msg || "Login failed");
+    }
+
+
   };
 
   return (
@@ -65,8 +81,8 @@ function Login() {
               onChange={handleChange("password")}
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">
-            Login
+          <button type="submit" className="btn btn-primary w-100" >
+            login
           </button>
         </form>
 
@@ -75,7 +91,10 @@ function Login() {
         </div>
 
         <div className="text-center">
-          <button className="btn btn-primary w-100">
+          <button className="btn btn-primary w-100"
+            type="button" 
+            onClick={() => navigate("/signup")}
+          >
             New user? Sign Up
           </button>
         </div>
