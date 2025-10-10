@@ -62,8 +62,30 @@ function Signup() {
       dispatch({ type: "SET_FIELD", field, value: e.target.value });
     };
 
+  
+  const validateInputs = (): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10}$/;
+
+    if (!emailRegex.test(state.email)) {
+      alert("Please enter a valid email (e.g. abc@gmail.com)");
+      return false;
+    }
+
+    if (!phoneRegex.test(state.phone)) {
+      alert("Phone number must be exactly 10 digits");
+      return false;
+    }
+
+    return true;
+  };
+
+
   const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!validateInputs()) return;
+    
     const formData = new FormData();
     formData.append("firstName", state.firstName);
     formData.append("lastName", state.lastName);
