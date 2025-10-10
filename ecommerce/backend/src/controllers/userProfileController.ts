@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 import { User } from "../entities/users.js";
 
 export const userProfile = async(req:Request, res:Response, next:NextFunction)=>{

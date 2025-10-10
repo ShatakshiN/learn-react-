@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 import { Product } from "../entities/products.js";
 
 

@@ -2,7 +2,7 @@
 
 import { Category } from "../entities/categories.js";
 import type { Request, Response, NextFunction } from "express";
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 import { IsNull } from "typeorm";
 
 export const categories = async(req:Request, res:Response, next:NextFunction)=>{

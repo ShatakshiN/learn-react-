@@ -2,7 +2,7 @@ import { User } from "../entities/users.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import type { Request, Response, NextFunction } from "express";
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 import { config } from "dotenv";
 
 config();
