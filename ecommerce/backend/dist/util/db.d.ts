@@ -1,4 +1,8 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-export declare const AppDataSource: DataSource;
+export declare class AppDataSource {
+    private static instance;
+    private constructor();
+    static getInstance(): DataSource;
+}
 //# sourceMappingURL=db.d.ts.map

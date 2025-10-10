@@ -1,0 +1,24 @@
+import { AppDataSource } from "../../util/db.js";
+import { VariantAttributeValue } from "../entities/variantAttributeValues.js";
+export const seedVariantAttributeValues = async () => {
+    const dataSource = AppDataSource.getInstance();
+    if (!dataSource.isInitialized) {
+        await dataSource.initialize();
+    }
+    const repo = dataSource.getRepository(VariantAttributeValue);
+    const data = repo.create([
+        {
+            productVariant: { id: 1 }, // iPhone 15 variant
+            attribute: { id: 2 }, // Storage
+            value: "128GB",
+        },
+        {
+            productVariant: { id: 1 }, // iPhone 15 variant
+            attribute: { id: 1 }, // Color
+            value: "Black",
+        },
+    ]);
+    await repo.save(data);
+    console.log("Variant Attribute Values seeded");
+};
+//# sourceMappingURL=seedVariantAttributeValues.js.map

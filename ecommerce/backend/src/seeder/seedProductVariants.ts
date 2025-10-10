@@ -1,9 +1,16 @@
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 import { ProductVariant } from "../entities/productVariants.js";
 //import { Product } from "../entities/products.js";
 
 export const seedProductVariants = async () => {
-  const repo = AppDataSource.getRepository(ProductVariant);
+  const dataSource = AppDataSource.getInstance();
+  
+    if (!dataSource.isInitialized) {
+      await dataSource.initialize();
+    }
+  
+    
+    const repo = dataSource.getRepository(ProductVariant);
 
   const variants = repo.create([
     {

@@ -1,8 +1,15 @@
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 import { ProductImage } from "../entities/productImage.js";
 
 export const seedProductImages = async () => {
-  const repo = AppDataSource.getRepository(ProductImage);
+  const dataSource = AppDataSource.getInstance();
+
+  if (!dataSource.isInitialized) {
+    await dataSource.initialize();
+  }
+
+  
+  const repo = dataSource.getRepository(ProductImage);
 
   const images = repo.create([
     {

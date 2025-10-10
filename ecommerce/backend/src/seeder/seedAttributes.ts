@@ -1,8 +1,15 @@
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 import { Attribute } from "../entities/attributes.js";
 
 export const seedAttributes = async () => {
-  const attributeRepo = AppDataSource.getRepository(Attribute);
+  const dataSource = AppDataSource.getInstance();
+  
+      if (!dataSource.isInitialized) {
+          await dataSource.initialize();
+      }
+  
+    
+      const attributeRepo = dataSource.getRepository(Attribute);
 
   const existing = await attributeRepo.count();
   if (existing > 0) {

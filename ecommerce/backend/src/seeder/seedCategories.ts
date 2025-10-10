@@ -1,8 +1,15 @@
 import { Category } from "../entities/categories.js";
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 
 export const seedCategories = async() =>{
-    const categoryRepo = AppDataSource.getRepository('Category');
+    const dataSource = AppDataSource.getInstance();
+
+    if (!dataSource.isInitialized) {
+        await dataSource.initialize();
+    }
+
+  
+    const categoryRepo = dataSource.getRepository(Category);
 
     const topCategoriesData = [
         {
@@ -115,14 +122,7 @@ export const seedCategories = async() =>{
 
         let existing = await categoryRepo.findOne({ where: { category: sub.category } }) as Category | null;
 
-        if (!existing) {
-            const newSubCategory = categoryRepo.create({
-                category: sub.category,
-                icon_image_url: sub.icon_image_url,
-                parent: parentCategory,
-            });
-            await categoryRepo.save(newSubCategory);
-        }
+       
     }
 
     console.log("Categories and subcategories seeded successfully!");

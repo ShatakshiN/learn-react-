@@ -8,7 +8,14 @@ import { IsNull } from "typeorm";
 export const categories = async(req:Request, res:Response, next:NextFunction)=>{
     try{
 
-        const categoryRepository = AppDataSource.getRepository(Category);
+        const dataSource = AppDataSource.getInstance();
+
+        if (!dataSource.isInitialized) {
+            await dataSource.initialize();
+        }
+
+  
+        const categoryRepository = dataSource.getRepository(Category);
         const categories = await categoryRepository.find({
             where: {parent: IsNull()}
         })
@@ -38,17 +45,23 @@ export const subCategories = async(req:Request, res:Response, next: NextFunction
             return res.status(400).json({ msg: "Invalid category ID" });
         }
 
-       const categoryRepository = AppDataSource.getRepository(Category);
-       const subCategories = await categoryRepository.find({
+        const dataSource = AppDataSource.getInstance();
+
+        if (!dataSource.isInitialized) {
+            await dataSource.initialize();
+        }
+        const categoryRepository = dataSource.getRepository(Category);
+
+        const subCategories = await categoryRepository.find({
             where: { parent: { id: parentId } },
             relations: ["parent"],
-       })
+        })
 
-       if(!subCategories){
-        res.status(404).json({msg:"No subcategories found"})
-       }
+        if (!subCategories) {
+            res.status(404).json({ msg: "No subcategories found" })
+        }
 
-       res.status(200).json({subcatList:subCategories})
+        res.status(200).json({ subcatList: subCategories })
     }catch(error){
         console.log(error);
         return res.status(500).json({msg:error||"internal server error"});

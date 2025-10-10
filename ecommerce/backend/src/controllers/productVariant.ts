@@ -16,7 +16,14 @@ export const AllVariants = async(req:Request, res:Response, next:NextFunction)=>
             return res.status(400).json({msg:"invalid Id"})
         }
 
-        const variantAttributesRepo = AppDataSource.getRepository(VariantAttributeValue);
+        const dataSource = AppDataSource.getInstance();
+        
+            if (!dataSource.isInitialized) {
+                await dataSource.initialize();
+            }
+        
+          
+        const variantAttributesRepo = dataSource.getRepository(VariantAttributeValue);
 
         const allVariants = await variantAttributesRepo
             .createQueryBuilder("vav")

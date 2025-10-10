@@ -11,7 +11,13 @@ export const userProfile = async(req:Request, res:Response, next:NextFunction)=>
             return res.status(401).json({msg: "unauthorized access: no user found" })
         }
 
-        const userRepo = AppDataSource.getRepository(User);
+        const dataSource = AppDataSource.getInstance();
+        
+            if (!dataSource.isInitialized) {
+                await dataSource.initialize();
+            }
+  
+        const userRepo = dataSource.getRepository(User);
 
         const userDetails = await userRepo.findOne({
             where: {user_id:user.user_id},

@@ -1,0 +1,1 @@
+{"version":3,"file":"orderItems.d.ts","sourceRoot":"","sources":["../../../src/entities/orderItems.ts"],"names":[],"mappings":"AAQA,OAAO,EAAE,KAAK,EAAE,MAAM,aAAa,CAAC;AACpC,OAAO,EAAE,cAAc,EAAE,MAAM,sBAAsB,CAAC;AAGtD,qBACa,SAAS;IAEpB,EAAE,EAAG,MAAM,CAAC;IAOZ,KAAK,EAAG,KAAK,CAAC;IAOd,cAAc,EAAG,cAAc,CAAC;IAGhC,QAAQ,EAAG,MAAM,CAAC;IAGlB,KAAK,EAAG,MAAM,CAAC;CAChB"}

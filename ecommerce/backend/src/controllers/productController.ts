@@ -17,7 +17,14 @@ export const AllProducts = async(req:Request, res:Response, next:NextFunction)=>
             return res.status(400).json({msg:"invalid ID"})
         }
 
-        const productRepository = AppDataSource.getRepository(Product);
+        const dataSource = AppDataSource.getInstance();
+        
+            if (!dataSource.isInitialized) {
+                await dataSource.initialize();
+            }
+        
+          
+        const productRepository = dataSource.getRepository(Product);
 
         const allProducts = await productRepository
         .createQueryBuilder("p")

@@ -22,7 +22,14 @@ export const signUp = async(req:Request<{}, {}, SignUpBody>,res:Response, next:N
         const dpFile = req.file;
         const dpUrl = dpFile ? `/uploads/${dpFile.filename}` : "/uploads/default.png"; 
 
-        const userRepository = AppDataSource.getRepository(User);
+        const dataSource = AppDataSource.getInstance();
+        
+            if (!dataSource.isInitialized) {
+                await dataSource.initialize();
+            }
+        
+          
+            const userRepository= dataSource.getRepository(User);
 
         const existingUseer = await userRepository.findOne({
             where : {email}
@@ -65,7 +72,12 @@ export const login = async(req:Request<{}, {}, SignUpBody>,res:Response, next:Ne
     try{
         const {email, password} = req.body;
 
-        const userRepository = AppDataSource.getRepository(User);
+        const dataSource = AppDataSource.getInstance();
+        
+            if (!dataSource.isInitialized) {
+                await dataSource.initialize();
+            }  
+        const userRepository = dataSource.getRepository(User);
 
         const user = await userRepository.findOne({
             where: {email: email}

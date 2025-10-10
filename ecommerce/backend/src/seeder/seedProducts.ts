@@ -1,16 +1,23 @@
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 import { Product } from "../entities/products.js";
 import { Category } from "../entities/categories.js";
 
 export const seedProducts = async () => {
-  const productRepo = AppDataSource.getRepository(Product);
+  const dataSource = AppDataSource.getInstance();
+  
+    if (!dataSource.isInitialized) {
+      await dataSource.initialize();
+    }
+  
+    
+    const productRepo = dataSource.getRepository(Product);
   const existing = await productRepo.count();
   if (existing > 0) {
     console.log("Products already exist, skipping...");
     return;
   }
 
-  const categoryRepo = AppDataSource.getRepository(Category);
+  const categoryRepo = dataSource.getRepository(Category);
   const phonesCategory = await categoryRepo.findOne({ where: { category: "Phones" } });
   if (!phonesCategory) throw new Error("Phones category not found");
 

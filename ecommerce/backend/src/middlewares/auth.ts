@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { User } from '../entities/users.js';
-import { AppDataSource } from "../util/db.js";
+import { AppDataSource } from "../../util/db.js";
 
 interface JwtPayload {
     userId: number; 
@@ -16,7 +16,12 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
 
-        const userRepository = AppDataSource.getRepository(User);
+        const dataSource = AppDataSource.getInstance();
+
+        if (!dataSource.isInitialized) {
+            await dataSource.initialize();
+        }
+        const userRepository = dataSource.getRepository(User);
         const user = await userRepository.findOne({
             where: { user_id: decoded.userId },
         });
