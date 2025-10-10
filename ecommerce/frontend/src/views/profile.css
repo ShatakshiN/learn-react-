@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container.profile-page {
+  max-width: 1200px;
+}
+
+
+.card-body img {
+  border: 3px solid #f1f3f6;
+}
+
+.card-body h6 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.list-group-item {
+  border: none;
+  font-size: 0.95rem;
+  padding: 10px 15px;
+  color: #212121;
+  transition: background-color 0.2s ease;
+}
+
+.list-group-item.bg-light {
+  background-color: #f1f3f6 !important;
+  font-weight: 600;
+}
+
+.list-group-item.active {
+  background-color: #2874f0 !important;
+  color: white !important;
+  border-radius: 0;
+}
+
+.list-group-item:hover {
+  background-color: #f9fafc;
+  cursor: pointer;
+}
+
+/* Main Card */
+.card.shadow-sm {
+  border: none;
+  border-radius: 8px;
+}
+
+.card.p-4 {
+  background-color: #fff;
+}
+
+.card h5 {
+  color: #212121;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+/* Labels and Inputs */
+.form-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-control {
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.form-control:disabled {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* FAQ Section */
+h6.fw-bold {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 15px;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.card p strong {
+  color: #212121;
+}
+
+/* Buttons */
+.btn-outline-danger,
+.btn-danger {
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-danger:hover,
+.btn-danger:hover {
+  transform: scale(1.02);
+}
+
+/* Logout Button */
+.list-group-item.text-danger {
+  cursor: pointer;
+  border-top: 1px solid #f0f0f0;
+}
+
+.list-group-item.text-danger:hover {
+  background-color: #ffeeee;
+}
+
+
+@media (max-width: 768px) {
+  .col-md-3 {
+    margin-bottom: 20px;
+  }
+
+  .card.p-4 {
+    padding: 20px !important;
+  }
+
+  .list-group-item {
+    font-size: 0.85rem;
+  }
+}

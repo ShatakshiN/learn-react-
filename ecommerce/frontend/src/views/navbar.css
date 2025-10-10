@@ -1,0 +1,40 @@
+.navbar {
+  font-family: "Poppins", sans-serif;
+  color: black;
+}
+
+.search-bar {
+  width: 400px;
+}
+
+.search-bar input {
+  border-radius: 8px;
+  box-shadow: none;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-item i {
+  width: 20px;
+}
+
+.cart-section .badge {
+  font-size: 0.6rem;
+  padding: 4px 5px;
+}
+
+.nav-icons button {
+  border: none;
+  background: transparent;
+  font-weight: 500;
+}
+
+.nav-icons span {
+  cursor: pointer;
+}

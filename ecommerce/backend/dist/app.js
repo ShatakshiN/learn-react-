@@ -6,6 +6,7 @@ import path from "path";
 import userRoutes from './routes/userRoute.js';
 import categoriesRoutes from "./routes/categoriesRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import userDetailsRoute from "./routes/userDetailsRoute.js";
 import { fileURLToPath } from "url";
 import { seedCategories } from "./seeder/seedCategories.js";
 import { seedAttributes } from "./seeder/seedAttributes.js";
@@ -23,6 +24,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use('/user', userRoutes);
 app.use('/homepage', categoriesRoutes);
 app.use('/products', productRoutes);
+app.use('/users', userDetailsRoute);
 AppDataSource.initialize()
     .then(async () => {
     console.log("Data Source has been initialized!");

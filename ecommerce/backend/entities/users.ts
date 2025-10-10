@@ -22,7 +22,7 @@ export class User {
     @Column({ type: "varchar", length: 100, unique: true })
     email!: string;
 
-    @Column({ type: "varchar", length: 15 })
+    @Column({ type: "varchar", length: 15, unique:true })
     phone_no!: string;
 
     @Column({ type: "boolean", default: true })

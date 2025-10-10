@@ -98,7 +98,7 @@ function Signup() {
       <div className="signup-form p-4 shadow rounded">
         <h2 className="mb-4 text-center">Sign Up</h2>
 
-        {/* Profile Upload */}
+        
         <div className="d-flex justify-content-center mb-3">
           <label htmlFor="profilePicUpload" className="profile-upload">
             <img src={state.profilePic} alt="Profile" className="profile-pic" />
@@ -170,12 +170,11 @@ function Signup() {
           </button>
         </form>
 
-        {/* Divider */}
         <div className="text-center my-3">
           <span className="divider">------ or ------</span>
         </div>
 
-        {/* Sign In */}
+        
         <div className="text-center">
           <button className="btn btn-primary w-100"
             type="button" // important so it doesn't submit the form

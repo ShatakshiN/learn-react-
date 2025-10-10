@@ -19,10 +19,12 @@ export const userProfile = async(req:Request, res:Response, next:NextFunction)=>
 
         })
 
+     
+
         if(!userDetails){
             return res.status(404).json({msg: "user not found!"})
         }
-
+        return res.status(200).json({userDetails: userDetails});
     }catch(error){
         console.log(error)
         return res.status(500).json({msg:error || "internal server error"})

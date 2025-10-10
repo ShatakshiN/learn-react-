@@ -1,1 +1,1 @@
-{"version":3,"file":"userProfileController.d.ts","sourceRoot":"","sources":["../../controllers/userProfileController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAI/D,eAAO,MAAM,WAAW,GAAS,KAAI,OAAO,EAAE,KAAI,QAAQ,EAAE,MAAK,YAAY,4DAyB5E,CAAA"}
+{"version":3,"file":"userProfileController.d.ts","sourceRoot":"","sources":["../../controllers/userProfileController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAI/D,eAAO,MAAM,WAAW,GAAS,KAAI,OAAO,EAAE,KAAI,QAAQ,EAAE,MAAK,YAAY,gDA2B5E,CAAA"}
