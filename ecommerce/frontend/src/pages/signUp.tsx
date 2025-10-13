@@ -99,12 +99,12 @@ function Signup() {
     }
 
     try {
-      const { data } = await api.post("/user/signUp", formData, {
+      const { data } = await api.post("/users/signup", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      alert(data.msg);
-      console.log("Profile URL saved in DB:", data.dpUrl);
+      alert(data.data.msg);
+      //console.log("Profile URL saved in DB:", data.user.dp_url);
       
       dispatch({ type: "RESET" });
 

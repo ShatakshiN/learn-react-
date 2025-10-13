@@ -1,19 +1,13 @@
 export class BaseController {
-    sendSuccess(res, payload, code = 200) {
-        if (typeof payload === "string") {
-            res.status(code).json({ success: true, message: payload });
-        }
-        else {
-            res.status(code).json({ success: true, data: payload ?? null });
-        }
+    sendSuccess(res, data, status = 200) {
+        res.status(status).json({ success: true, data });
     }
-    sendError(res, error, code = 400) {
-        const message = error instanceof Error
-            ? error.message
-            : typeof error === "string"
-                ? error
-                : "Something went wrong";
-        res.status(code).json({ success: false, message });
+    sendError(res, message, status = 500) {
+        res.status(status).json({ success: false, message });
+    }
+    handleError(error, res) {
+        console.error(error);
+        this.sendError(res, "Internal Server Error", 500);
     }
 }
 //# sourceMappingURL=baseController.js.map

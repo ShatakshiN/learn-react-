@@ -40,7 +40,7 @@ function Login() {
     e.preventDefault();
     try {
       
-      const response = await api.post('/user/login', state);
+      const response = await api.post('/users/login', state);
 
       const data = response.data; 
 
