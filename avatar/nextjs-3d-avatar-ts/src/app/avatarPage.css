@@ -1,0 +1,18 @@
+/* Center the square container on the page */
+.avatar-container {
+  width: 800px;          /* square width */
+  height: 800px;         /* square height */
+  margin: auto;          /* centers horizontally & vertically in body */
+  display: flex;         
+  justify-content: center; /* center avatar horizontally */
+  align-items: center;     /* center avatar vertically */
+  background-color: #f3f3f3; /* optional background */
+}
+
+/* Optional: make it responsive */
+@media (max-width: 900px) {
+  .avatar-container {
+    width: 90vw;
+    height: 90vw; /* maintain square aspect ratio */
+  }
+}

@@ -1,12 +1,16 @@
-import AvatarViewer from "@/components/avatarCanvas"
+import AvatarViewer from "../components/avatarCanvas"
+import styles from "./page.module.css"
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="w-full h-screen flex items-center justify-center bg-gray-100">
-      <AvatarViewer />
-    </main>
+    <div className={styles.pageWrapper}>
+      <main className={styles.container}>
+        <AvatarViewer />
+      </main>
+    </div>
   )
 }
+
 
 
 

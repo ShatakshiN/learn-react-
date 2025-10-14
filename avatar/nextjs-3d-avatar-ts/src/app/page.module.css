@@ -1,0 +1,27 @@
+/* Full-page wrapper centers content vertically and horizontally */
+.pageWrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  background-color: #f3f3f3;
+}
+
+/* Square container for avatar */
+.container {
+  width: 1600px;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff; /* optional */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .container {
+    width: 100vw;
+    height: 90vw;
+  }
+}
