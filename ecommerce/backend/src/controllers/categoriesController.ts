@@ -10,9 +10,6 @@ export const categories = async(req:Request, res:Response, next:NextFunction)=>{
 
         const dataSource = AppDataSource.getInstance();
 
-        if (!dataSource.isInitialized) {
-            await dataSource.initialize();
-        }
         const categoryRepository = dataSource.getRepository(Category);
         const categories = await categoryRepository.find({
             where: {parent: IsNull()}

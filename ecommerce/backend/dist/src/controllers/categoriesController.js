@@ -5,9 +5,6 @@ import { IsNull } from "typeorm";
 export const categories = async (req, res, next) => {
     try {
         const dataSource = AppDataSource.getInstance();
-        if (!dataSource.isInitialized) {
-            await dataSource.initialize();
-        }
         const categoryRepository = dataSource.getRepository(Category);
         const categories = await categoryRepository.find({
             where: { parent: IsNull() }

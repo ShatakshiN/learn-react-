@@ -44,7 +44,7 @@ function reducer(state: State, action: Action): State {
 export default function Profile() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
+    useEffect(() => {
     const fetchUserProfile = async () => {
       dispatch({ type: "FETCH_START" });
       try {
@@ -76,7 +76,7 @@ export default function Profile() {
     );
   }
 
-  const user = state.user;
+  const user = state.user; 
 
   return (
     <div className="container py-4 profile-page">
