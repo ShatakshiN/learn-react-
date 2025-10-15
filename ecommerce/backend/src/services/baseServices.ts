@@ -24,4 +24,13 @@ export abstract class BaseService<T extends ObjectLiteral> {
       return await this.repository.save(entity);
     }
   }
+
+  async save(entity: T): Promise<T> { 
+    return await this.repository.save(entity);
+  }
+
+  async delete(criteria: Partial<T>): Promise<void> {
+  await this.repository.delete(criteria);
+}
+
 }

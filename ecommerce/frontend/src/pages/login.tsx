@@ -44,7 +44,7 @@ function Login() {
 
       const data = response.data; 
 
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.data.token);
 
       alert("Logged in successfully!");
       navigate('/userProfile');

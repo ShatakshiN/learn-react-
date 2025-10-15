@@ -19,5 +19,11 @@ export class BaseService {
             return await this.repository.save(entity);
         }
     }
+    async save(entity) {
+        return await this.repository.save(entity);
+    }
+    async delete(criteria) {
+        await this.repository.delete(criteria);
+    }
 }
 //# sourceMappingURL=baseServices.js.map

@@ -8,6 +8,8 @@ import categoriesRoutes from "./src/routes/categoriesRoutes.js";
 import productRoutes from "./src/routes/productRoutes.js";
 import userDetailsRoute from "./src/routes/userDetailsRoute.js";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+dotenv.config(); 
 
 /* import { seedCategories } from "./seeder/seedCategories.js";
 import { seedAttributes } from "./seeder/seedAttributes.js";

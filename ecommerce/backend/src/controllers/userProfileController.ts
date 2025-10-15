@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from "express";
+/* import type { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../../util/db.js";
 import { User } from "../entities/users.js";
 
@@ -35,4 +35,59 @@ export const userProfile = async(req:Request, res:Response, next:NextFunction)=>
         console.log(error)
         return res.status(500).json({msg:error || "internal server error"})
     }
+} */
+
+import type{ Request, Response, NextFunction } from "express";
+import { BaseController } from "./baseController.js";
+import { UserService } from "../services/userProfileServices.js";
+
+export class UserController extends BaseController {
+  private userService: UserService;
+
+  constructor() {
+    super();
+    this.userService = new UserService();
+  }
+
+  getUserProfile = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = req.user;
+
+      if (!user) return this.sendError(res, "Unauthorized access: no user found", 401);
+
+      const userDetails = await this.userService.getUserProfile(user.user_id);
+2
+      return this.sendSuccess(res, userDetails);
+    } catch (error: any) {
+      this.handleError(error, res);
+    }
+  };
+
+  editUserProfile = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = req.user;
+      if (!user) return this.sendError(res, "Unauthorized", 401);
+
+      const updates = req.body; 
+
+      const updatedProfile = await this.userService.updateUserProfile(user.user_id, updates);
+
+      return this.sendSuccess(res, updatedProfile);
+    } catch (error: any) {
+      this.handleError(error, res);
+    }
+  };
+
+  deleteUserAccount = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = req.user;
+      if (!user) return this.sendError(res, "Unauthorized", 401);
+
+      const result = await this.userService.deleteUser(user.user_id);
+
+      return this.sendSuccess(res, result);
+    } catch (error: any) {
+      this.handleError(error, res);
+    }
+  };
 }
