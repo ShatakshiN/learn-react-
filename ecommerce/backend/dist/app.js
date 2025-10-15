@@ -26,7 +26,7 @@ const __dirname = path.dirname(__filename);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/users", userRoutes);
 app.use(categoriesRoutes);
-app.use('/products', productRoutes);
+app.use(productRoutes);
 app.use('/users', userDetailsRoute);
 const dataSource = AppDataSource.getInstance();
 dataSource.initialize()

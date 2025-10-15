@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { AllProducts } from "../controllers/productController.js";
+import { ProductController } from "../controllers/productController.js";
 
-const router  = Router(); 
+const router = Router();
+const productController = new ProductController();
 
-router.get('/allProducts/:id', AllProducts); // id from category table 
+router.get("/products/:id", productController.getAllProducts.bind(productController));
 
 export default router;

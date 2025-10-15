@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
 
 interface Category {
@@ -16,6 +17,7 @@ export default function SubCategoryPage() {
   const [subcategories, setSubcategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchSubcategories = async () => {
@@ -36,6 +38,13 @@ export default function SubCategoryPage() {
     fetchSubcategories();
   }, [id]);
 
+  const handleViewAll = (subcategoryId: number, subcategoryName: string) => {
+    //const navigate = useNavigate();
+    navigate(`/products/${subcategoryId}`, {
+      state: { categoryName: subcategoryName },
+    });
+  };
+
   return (
     <div className="container mt-4">
       <h2 className="mb-4">{categoryName} - Subcategories</h2>
@@ -49,7 +58,7 @@ export default function SubCategoryPage() {
                   {subcategories.map((sub) => (
                       <li key={sub.id} className="list-group-item d-flex justify-content-between align-items-center">
                           <span>{sub.category}</span>
-                          <button className="btn btn-link btn-sm">View All</button>
+                          <button className="btn btn-link btn-sm" onClick={()=>handleViewAll(sub.id, sub.category)}>View All</button>
                       </li>
                   ))}
               </ul>

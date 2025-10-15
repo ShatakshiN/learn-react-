@@ -49,7 +49,8 @@ const Login = lazy(() => import("../pages/login"));
 const NotFound = lazy(() => import("../pages/notFound"));
 const UserProfile = lazy(() => import("../pages/userProfile"));
 const Categories = lazy(() => import("../pages/categories"));
-const SubCategories = lazy(()=>import('../pages/subCategories'))
+const SubCategories = lazy(()=>import('../pages/subCategories'));
+const Products = lazy(()=>import('../pages/products'));
 
 import MainLayout from "../components/mainLayout";
 
@@ -69,30 +70,10 @@ const AppRoutes = () => {
         
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-
-        
-        <Route
-          path="/categories"
-          element={
-            <PrivateRoute>
-              <MainLayout>
-                <Categories />
-              </MainLayout>
-            </PrivateRoute>
-          }
-        />
-
-        <Route
-          path="/subcategories/:id"
-          element={
-            <PrivateRoute>
-              <MainLayout>
-                <SubCategories />
-              </MainLayout>
-            </PrivateRoute>
-          }
-        />
-
+        <Route path = "/categories" element={<Categories />}/>
+        <Route path = "/subcategories/:id" element={<SubCategories/>}/>
+        <Route path="products/:id" element={<Products/>}/>
+ 
         <Route
           path="/userProfile"
           element={

@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { AllProducts } from "../controllers/productController.js";
+import { ProductController } from "../controllers/productController.js";
 const router = Router();
-router.get('/allProducts/:id', AllProducts); // id from category table 
+const productController = new ProductController();
+router.get("/products/:id", productController.getAllProducts.bind(productController));
 export default router;
 //# sourceMappingURL=productRoutes.js.map
