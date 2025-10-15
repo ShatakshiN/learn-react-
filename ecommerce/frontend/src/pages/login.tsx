@@ -47,7 +47,7 @@ function Login() {
       localStorage.setItem("token", data.data.token);
 
       alert("Logged in successfully!");
-      navigate('/userProfile');
+      navigate('/categories');
     } catch (error: any) {
       console.log(error)
       alert(error.response?.data?.msg || "Login failed");

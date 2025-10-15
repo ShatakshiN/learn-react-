@@ -1,13 +1,21 @@
 
 import "../views/navbar.css";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
-      <a className="navbar-brand d-flex align-items-center" href="#">
+      <Link className="navbar-brand d-flex align-items-center" to="/categories">
         <span className="fw-bold text-primary fs-4">ABC</span>
         <span className="text-dark fs-4 ms-1">Ecommerce</span>
-      </a>
+      </Link>
 
       <div className="d-flex align-items-center ms-auto">
         <div className="search-bar">
@@ -30,19 +38,29 @@ function Navbar() {
               USER
             </button>
             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-              <li><a className="dropdown-item" href="#"><i className="bi bi-person me-2"></i>My Profile</a></li>
-              <li><a className="dropdown-item" href="#"><i className="bi bi-box-seam me-2"></i>Orders</a></li>
+              <li>
+                <Link className="dropdown-item" to="/userProfile">
+                  <i className="bi bi-person me-2"></i>My Profile
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/orders">
+                  <i className="bi bi-box-seam me-2"></i>Orders
+                </Link>
+              </li>
               <li><hr className="dropdown-divider" /></li>
-              <li><a className="dropdown-item text-danger" href="#"><i className="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+              <li>
+                <button
+                  className="dropdown-item text-danger d-flex align-items-center"
+                  onClick={handleLogout}
+                >
+                  <i className="bi bi-box-arrow-right me-2"></i>Logout
+                </button>
+              </li>
             </ul>
           </div>
 
-          <div className="cart-section ms-4 d-flex align-items-center">
-            <i className="bi bi-cart fs-5 position-relative">
-              <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">1</span>
-            </i>
-            {/* <span className="ms-2 ">Cart</span> */}
-          </div>
+      
         </div>
       </div>
     </nav>
@@ -50,3 +68,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
