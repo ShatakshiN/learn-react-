@@ -11,13 +11,13 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 dotenv.config(); 
 
-/* import { seedCategories } from "./seeder/seedCategories.js";
-import { seedAttributes } from "./seeder/seedAttributes.js";
-import { seedProductImages } from "./seeder/seedProductImages.js";
-import { seedProductVariants } from "./seeder/seedProductVariants.js";
-import { seedProducts } from "./seeder/seedProducts.js";
-import { seedVariantAttributeValues } from "./seeder/seedVariantAttributeValues.js";
- */
+import { seedCategories } from "./src/seeder/seedCategories.js";
+import { seedAttributes } from "./src/seeder/seedAttributes.js";
+import { seedProductImages } from "./src/seeder/seedProductImages.js";
+import { seedProductVariants } from "./src/seeder/seedProductVariants.js";
+import { seedProducts } from "./src/seeder/seedProducts.js";
+import { seedVariantAttributeValues } from "./src/seeder/seedVariantAttributeValues.js";
+
 const app = express();
 
 app.use(express.json()); 
@@ -38,7 +38,13 @@ const dataSource = AppDataSource.getInstance();
 
 dataSource.initialize()
     .then(async () => {
-        console.log("Data Source has been initialized!");      
+        console.log("Data Source has been initialized!");  
+       /*  await seedCategories();
+        await seedAttributes();
+        await seedProducts();
+        await seedProductVariants();
+        await seedProductImages();
+        await seedVariantAttributeValues();  */   
         app.listen(4000, () => {
             console.log("Server running on http://localhost:4000");
         });
